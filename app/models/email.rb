@@ -1,4 +1,4 @@
 class Email < ApplicationRecord
-  validates :email_address, presence: true, presence
+  validates :email_address, presence: true
   belongs_to :person
 end

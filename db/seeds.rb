@@ -136,3 +136,13 @@ phones = Phone.create([
 
 ])
 
+users = User.create([
+    {
+        name:"Kyle",
+        email:"kreiley6@gmail.com",
+        password:"password",
+        password_confirmation:"password"
+    }
+])
+
+
