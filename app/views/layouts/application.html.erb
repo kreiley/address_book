@@ -18,6 +18,7 @@
     <main>
       <% if current_user %>
       Hi <%= current_user.email%>
+         <%= link_to "Logout", sign_out_path %>
       <% end %>
       <%= yield %>
     </main>

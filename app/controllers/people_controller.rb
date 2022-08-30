@@ -1,9 +1,10 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: %i[ show edit update destroy ]
+  before_action :require_current_user
 
   # GET /people or /people.json
   def index
-    @people = Person.all
+    @people = current_user.people
   end
 
   # GET /people/1 or /people/1.json
@@ -21,7 +22,8 @@ class PeopleController < ApplicationController
 
   # POST /people or /people.json
   def create
-    @person = Person.new(person_params)
+    #@person = Person.new(person_params)
+    @person = current_user.people.new(person_params)
 
     respond_to do |format|
       if @person.save
@@ -60,7 +62,7 @@ class PeopleController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
-      @person = Person.find(params[:id])
+      @person = current_user.people.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
