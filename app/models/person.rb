@@ -1,9 +1,10 @@
 class Person < ApplicationRecord
     validates :first_name, presence: true
     validates :last_name, presence: true
-    has_many :addresses
-    has_many :emails
-    has_many :phones
+    has_many :addresses, dependent: :destroy
+    has_many :emails, dependent: :destroy
+    has_many :phones, dependent: :destroy
+    belongs_to :user
 
     before_create :slugify
 
