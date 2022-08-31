@@ -1,9 +1,11 @@
 class PhonesController < ApplicationController
   before_action :set_phone, only: %i[ show edit update destroy ]
+  before_action :require_current_user
+
 
   # GET /phones or /phones.json
   def index
-    @phones = Phone.all
+    @phones = current_user.phones
   end
 
   # GET /phones/1 or /phones/1.json
@@ -21,7 +23,7 @@ class PhonesController < ApplicationController
 
   # POST /phones or /phones.json
   def create
-    @phone = Phone.new(phone_params)
+    @phone = current_user.phones.new(phone_params)
 
     respond_to do |format|
       if @phone.save
@@ -60,7 +62,7 @@ class PhonesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_phone
-      @phone = Phone.find(params[:id])
+      @phone = current_user.phones.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

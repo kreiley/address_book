@@ -6,6 +6,21 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+users = User.create([
+    {
+        name:"Kyle",
+        email:"kreiley6@gmail.com",
+        password:"password",
+        password_confirmation:"password"
+    },
+    {
+        name:"Kyle Reiley",
+        email:"kyle@kylereiley.com",
+        password:"password",
+        password_confirmation:"password"
+    }
+])
+
 people = Person.create([
     {
         salutation: "Mr.",
@@ -14,7 +29,8 @@ people = Person.create([
         last_name: "Reiley",
         ssn: "111111111",
         birth_date: "07/09/1993".to_date,
-        comment: "Hello World!"
+        comment: "Hello World!",
+        user: User.first
     },
     {
         salutation: "Ms.",
@@ -23,7 +39,8 @@ people = Person.create([
         last_name: "Bleyl",
         ssn: "111111112",
         birth_date: "25/01/1994".to_date,
-        comment: "I'm an artist."
+        comment: "I'm an artist.",
+        user: User.second
     },
     {
         salutation: "Ms.",
@@ -32,7 +49,8 @@ people = Person.create([
         last_name: "Bufkin",
         ssn: "111111113",
         birth_date: "01/12/1993".to_date,
-        comment: "I live with Kyle."
+        comment: "I live with Kyle.",
+        user: User.first
     },
     {
         salutation: "",
@@ -41,7 +59,8 @@ people = Person.create([
         last_name: "Liu",
         ssn: "111111114",
         birth_date: "25/11/1995".to_date,
-        comment: "I play volleyball."
+        comment: "I play volleyball.",
+        user: User.second
     },
     {
         salutation: "Mrs.",
@@ -50,7 +69,8 @@ people = Person.create([
         last_name: "DeLeon",
         ssn: "111111115",
         birth_date: "04/02/1994".to_date,
-        comment: "I am married to Alex."
+        comment: "I am married to Alex.",
+        user: User.first
     },
     {
         salutation: "Mr.",
@@ -59,7 +79,8 @@ people = Person.create([
         last_name: "Gonzalez",
         ssn: "111111116",
         birth_date: "06/06/1991".to_date,
-        comment: "I am married to Natalie."
+        comment: "I am married to Natalie.",
+        user: User.second
     }
 ])
 
@@ -70,7 +91,8 @@ addresses = Address.create([
         zip_code: "78722",
         state: "TX",
         country: "United States",
-        person: people.first
+        person: people.first,
+        user: User.first
     },
     {
         street: "2506 Manor Rd. Apt 205",
@@ -78,7 +100,9 @@ addresses = Address.create([
         zip_code: "78722",
         state: "TX",
         country: "United States",
-        person: people.first
+        person: people.first,
+        user: User.first
+
     },
     {
         street: "1101 Heights Ave.",
@@ -86,7 +110,8 @@ addresses = Address.create([
         zip_code: "78700",
         state: "TX",
         country: "United States",
-        person: people.second
+        person: people.second,
+        user: User.second
     },
     {
         street: "2408 Manor Rd. Apt 201",
@@ -94,7 +119,8 @@ addresses = Address.create([
         zip_code: "78722",
         state: "TX",
         country: "United States",
-        person: people.third
+        person: people.third,
+        user: User.first
     }
 ])
 
@@ -102,17 +128,26 @@ emails = Email.create([
     {
         email_address:"kreiley6@gmail.com",
         comment:"primary",
-        person: people.first
+        person: people.first,
+        user: User.first
     },
     {
         email_address:"kyle@kylereiley.com",
         comment:"secondary",
-        person: people.first
+        person: people.first,
+        user: User.first
+    },
+    {
+        email_address:"katybleyl@gmail.com",
+        comment:"primary",
+        person: people.second,
+        user: User.second
     },
     {
         email_address:"emiliebufkin@gmail.com",
         comment:"primary",
-        person: people.third
+        person: people.third,
+        user: User.first
     }
 
 ])
@@ -121,28 +156,22 @@ phones = Phone.create([
     {
         phone_number:"9795419228",
         comment:"cell",
-        person: people.first
+        person: people.first,
+        user: User.first
     },
     {
         phone_number:"8327153303",
         comment:"Cellular",
-        person: people.third
+        person: people.third,
+        user: User.first
     },
     {
         phone_number:"8795419224",
         comment:"cellphone",
-        person: people.second
+        person: people.second,
+        user: User.second
     }
 
-])
-
-users = User.create([
-    {
-        name:"Kyle",
-        email:"kreiley6@gmail.com",
-        password:"password",
-        password_confirmation:"password"
-    }
 ])
 
 

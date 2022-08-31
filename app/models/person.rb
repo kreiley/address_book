@@ -2,8 +2,11 @@ class Person < ApplicationRecord
     validates :first_name, presence: true
     validates :last_name, presence: true
     has_many :addresses, dependent: :destroy
+    accepts_nested_attributes_for :addresses
     has_many :emails, dependent: :destroy
+    accepts_nested_attributes_for :emails
     has_many :phones, dependent: :destroy
+    accepts_nested_attributes_for :phones
     belongs_to :user
 
     before_create :slugify

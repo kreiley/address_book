@@ -1,9 +1,11 @@
 class EmailsController < ApplicationController
   before_action :set_email, only: %i[ show edit update destroy ]
+  before_action :require_current_user
+
 
   # GET /emails or /emails.json
   def index
-    @emails = Email.all
+    @emails = current_user.emails
   end
 
   # GET /emails/1 or /emails/1.json
@@ -21,7 +23,7 @@ class EmailsController < ApplicationController
 
   # POST /emails or /emails.json
   def create
-    @email = Email.new(email_params)
+    @email = current_user.emails.new(email_params)
 
     respond_to do |format|
       if @email.save
@@ -60,7 +62,7 @@ class EmailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_email
-      @email = Email.find(params[:id])
+      @email = current_user.emails.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
