@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@nathanvda/cocoon": "^1.2.14",
+    "turbo": "^1.4.3",
     "vanilla-nested": "^1.7.0"
   }
 }

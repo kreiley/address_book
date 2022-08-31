@@ -27,6 +27,7 @@ class PhonesController < ApplicationController
 
     respond_to do |format|
       if @phone.save
+        format.turbo_stream
         format.html { redirect_to phone_url(@phone), notice: "Phone was successfully created." }
         format.json { render :show, status: :created, location: @phone }
       else

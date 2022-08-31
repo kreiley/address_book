@@ -1,40 +1,35 @@
-<p style="color: green"><%= notice %></p>
-  
-<%= link_to "Edit this person", edit_person_path(@person) %>
-<br/><br/>
-
-<%= render @person %>
-
-<div>
-
-  <div id="addresses">
+ <p style="color: green"><%= notice %></p>
+<h1 id="<%= "#{dom_id(@person)}_item" %>" class="py-3">
+  <%= turbo_frame_tag dom_id(@person) do %>
+    <%= link_to @person.first_name + " " + @person.last_name, edit_person_path(@person) %>
+    <% end %>
+</h1>
+ <h2>Phone</h2>
+ <% @person.phones.each do |phone| %>
+<li id="<%= "#{dom_id(phone)}_item" %>" class="py-3">
+  <%= turbo_frame_tag dom_id(phone) do %>
+    <%= link_to phone.phone_number, edit_phone_path(phone) %>
+    <% end %>
+</li>
+  <% end %>
+<h2>Emails</h2>
+<% @person.emails.each do |email| %>
+<li id="<%= "#{dom_id(email)}_item" %>" class="py-3">
+  <%= turbo_frame_tag dom_id(email) do %>
+    <%= link_to email.email_address, edit_email_path(email) %>
+    <% end %>
+</li>
+  <% end %>
+<h2>Addresses</h2>
   <% @person.addresses.each do |address| %>
-    <%= render address %>
-    <p>
-      <%= link_to "Show this address", address %>
-    </p>
+<li id="<%= "#{dom_id(address)}_item" %>" class="py-3">
+  <%= turbo_frame_tag dom_id(address) do %>
+    <%= link_to address.street + "\n" + address.town + ", " + address.state + ", " + address.country + ", " + address.zip_code, edit_address_path(address) %>
+    <% end %>
+</li>
   <% end %>
-</div>
 
-<div id="emails">
-  <% @person.emails.each do |email| %>
-    <%= render email %>
-    <p>
-      <%= link_to "Show this Email", email %>
-    </p>
-  <% end %>
-</div>
-
-  <div id="phones">
-  <% @person.phones.each do |phone| %>
-    <%= render phone %>
-    <p>
-      <%= link_to "Show this phone", phone %>
-    </p>
-  <% end %>
-</div>
-
+  <%= link_to "Edit this person", edit_person_path(@person) %>
   <%= link_to "Back to people", people_path %>
-
   <%= button_to "Destroy this person", @person, method: :delete %>
 </div>
