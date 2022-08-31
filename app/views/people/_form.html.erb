@@ -51,6 +51,62 @@
     <%= form.text_field :slug %>
   </div>
 
+  <h1>Emails</h1>
+  <%= form.fields_for :emails do |email| %>
+  <div>
+    <%= email.label :email_address, style: "display: block" %>
+    <%= email.text_field :email_address %>
+  </div>
+
+  <div>
+    <%= email.label :comment, style: "display: block" %>
+    <%= email.text_area :comment %>
+  </div>
+  <% end %>
+
+  <h1>Phone Numbers</h1>
+  <%= form.fields_for :phones do |phone| %>
+  <div>
+    <%= phone.label :phone_number, style: "display: block" %>
+    <%= phone.text_field :phone_number %>
+  </div>
+
+  <div>
+    <%= phone.label :comment, style: "display: block" %>
+    <%= phone.text_area :comment %>
+  </div>
+  <% end %>
+
+  <h1>Addresses</h1>
+  <%= form.fields_for :addresses do |addr| %>
+    <div>
+    <%= addr.label :street, style: "display: block" %>
+    <%= addr.text_field :street %>
+    </div>
+
+    <div>
+    <%= addr.label :town, style: "display: block" %>
+    <%= addr.text_field :town %>
+    </div>
+
+    <div>
+    <%= addr.label :zip_code, style: "display: block" %>
+    <%= addr.text_field :zip_code %>
+    </div>
+
+    <div>
+    <%= addr.label :state, style: "display: block" %>
+    <%= addr.text_field :state %>
+    </div>
+
+    <div>
+    <%= addr.label :country, style: "display: block" %>
+    <%= addr.text_field :country %>
+    </div>
+  <% end %>
+
+  
+
   <div>
     <%= form.submit %>
   </div>

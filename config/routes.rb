@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :people do
+    resources :addresses, only: [:create, :update, :destroy]
+  end
+
   get 'sessions/new'
   get 'users/new'
   resources :phones

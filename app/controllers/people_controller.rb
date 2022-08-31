@@ -14,6 +14,9 @@ class PeopleController < ApplicationController
   # GET /people/new
   def new
     @person = Person.new
+    @person.addresses.build
+    @person.emails.build
+    @person.phones.build
   end
 
   # GET /people/1/edit
@@ -24,6 +27,17 @@ class PeopleController < ApplicationController
   def create
     #@person = Person.new(person_params)
     @person = current_user.people.new(person_params)
+    for address in @person.addresses do
+      address.user = current_user
+    end
+    for email in @person.emails do
+      email.user = current_user
+    end
+    for phone in @person.phones do
+      phone.user = current_user
+    end
+
+
 
     respond_to do |format|
       if @person.save
@@ -63,10 +77,15 @@ class PeopleController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = current_user.people.find(params[:id])
+      
     end
 
     # Only allow a list of trusted parameters through.
     def person_params
-      params.require(:person).permit(:salutation, :first_name, :middle_name, :last_name, :ssn, :birth_date, :comment, :slug)
+      params.require(:person).permit(
+        :salutation, :first_name, :middle_name, :last_name, :ssn, :birth_date, :comment, :slug, :user_id,
+        addresses_attributes: [:id, :street, :town, :zip_code, :state, :country, :person, :_destroy],
+        emails_attributes: [:id, :email_address, :comment, :person, :_destroy],
+        phones_attributes: [:id, :phone_number, :comment, :person, :_destroy])
     end
 end

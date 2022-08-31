@@ -1,7 +1,9 @@
 
-<%= notice %>
 
 <h1>Sign In</h1>
+<% if notice %>
+  <p style="color:red"><%= notice %></p>
+<%end%>
 <form action="/sessions" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 

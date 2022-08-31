@@ -1,9 +1,11 @@
 class AddressesController < ApplicationController
   before_action :set_address, only: %i[ show edit update destroy ]
+  before_action :require_current_user
+
 
   # GET /addresses or /addresses.json
   def index
-    @addresses = Address.all
+    @addresses = current_user.addresses
   end
 
   # GET /addresses/1 or /addresses/1.json
@@ -21,7 +23,7 @@ class AddressesController < ApplicationController
 
   # POST /addresses or /addresses.json
   def create
-    @address = Address.new(address_params)
+    @address = current_user.addresses.new(address_params)
 
     respond_to do |format|
       if @address.save
@@ -60,7 +62,8 @@ class AddressesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_address
-      @address = Address.find(params[:id])
+      @address = current_user.addresses.find(params[:id])
+
     end
 
     # Only allow a list of trusted parameters through.
