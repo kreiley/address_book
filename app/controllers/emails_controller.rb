@@ -27,9 +27,11 @@ class EmailsController < ApplicationController
 
     respond_to do |format|
       if @email.save
+        format.turbo_stream
         format.html { redirect_to email_url(@email), notice: "Email was successfully created." }
         format.json { render :show, status: :created, location: @email }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@email)}_form"), partial: "form", locals: {email: @email}}
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @email.errors, status: :unprocessable_entity }
       end
@@ -43,6 +45,7 @@ class EmailsController < ApplicationController
         format.html { redirect_to email_url(@email), notice: "Email was successfully updated." }
         format.json { render :show, status: :ok, location: @email }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@email)}_form"), partial: "form", locals: {email: @email}}
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @email.errors, status: :unprocessable_entity }
       end

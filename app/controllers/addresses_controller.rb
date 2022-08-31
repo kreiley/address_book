@@ -27,6 +27,7 @@ class AddressesController < ApplicationController
 
     respond_to do |format|
       if @address.save
+        format.turbo_stream
         format.html { redirect_to address_url(@address), notice: "Address was successfully created." }
         format.json { render :show, status: :created, location: @address }
       else

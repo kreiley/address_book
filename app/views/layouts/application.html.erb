@@ -17,10 +17,6 @@
     </header>
     <main>
     <div class="container">
-      <% if current_user %>
-      Hi <%= current_user.email%>
-         <%= link_to "Logout", sign_out_path %>
-      <% end %>
       <%= yield %>
     </div>
     </main>

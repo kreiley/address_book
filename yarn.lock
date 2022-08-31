@@ -3,18 +3,43 @@
 
 
 "@nathanvda/cocoon@^1.2.14":
-  version "1.2.14"
-  resolved "https://registry.yarnpkg.com/@nathanvda/cocoon/-/cocoon-1.2.14.tgz#aaea910e4b9c0d28d5bdcb7f3743617db46b09af"
-  integrity sha512-WcEt2vVp50de2i7rkD4O+96O1iMtMIcTBNGPocrHfcmHDujKOngoLHFF8Ektgoh8PjwFAJMxx8WyGv0BtKTjxQ==
+  "integrity" "sha512-WcEt2vVp50de2i7rkD4O+96O1iMtMIcTBNGPocrHfcmHDujKOngoLHFF8Ektgoh8PjwFAJMxx8WyGv0BtKTjxQ=="
+  "resolved" "https://registry.npmjs.org/@nathanvda/cocoon/-/cocoon-1.2.14.tgz"
+  "version" "1.2.14"
   dependencies:
-    jquery "^3.3.1"
+    "jquery" "^3.3.1"
 
-jquery@^3.3.1:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.1.tgz#fab0408f8b45fc19f956205773b62b292c147a16"
-  integrity sha512-opJeO4nCucVnsjiXOE+/PcCgYw9Gwpvs/a6B1LL/lQhwWwpbVEVYDZ1FokFr8PRc7ghYlrFPuyHuiiDNTQxmcw==
+"jquery@^3.3.1":
+  "integrity" "sha512-opJeO4nCucVnsjiXOE+/PcCgYw9Gwpvs/a6B1LL/lQhwWwpbVEVYDZ1FokFr8PRc7ghYlrFPuyHuiiDNTQxmcw=="
+  "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.1.tgz"
+  "version" "3.6.1"
 
-vanilla-nested@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/vanilla-nested/-/vanilla-nested-1.7.0.tgz#fc1e8193ea8c76dfe3df96903c382b421c959095"
-  integrity sha512-wA5Y+IoyzBNiMbvxdD6flN0iPCUi78beB2HzJ91G6iUB7S/WWCAiCgCZoCrlG4pHk4fJPIxyAgTVQHZA17CGSQ==
+"turbo-darwin-64@1.4.3":
+  "integrity" "sha512-gapoVm5qbu2TJS4lJ6fM3o2eAkLyXSxHihw/4NRAYmwHCH3at1/cIAnRcctB/HLL3ZaB/p3HKb8mnI7k6xNHOw=="
+  "resolved" "https://registry.npmjs.org/turbo-darwin-64/-/turbo-darwin-64-1.4.3.tgz"
+  "version" "1.4.3"
+
+"turbo@^1.4.3":
+  "integrity" "sha512-g08eD2HdO/XW5xGHnXr0cXGiWnrgFBI6pN/3u0EOTeerKAsWIZU0ZrpSnl3whRtImeBB/gQu7Eu1waM2VOxzgw=="
+  "resolved" "https://registry.npmjs.org/turbo/-/turbo-1.4.3.tgz"
+  "version" "1.4.3"
+  optionalDependencies:
+    "turbo-android-arm64" "1.4.3"
+    "turbo-darwin-64" "1.4.3"
+    "turbo-darwin-arm64" "1.4.3"
+    "turbo-freebsd-64" "1.4.3"
+    "turbo-freebsd-arm64" "1.4.3"
+    "turbo-linux-32" "1.4.3"
+    "turbo-linux-64" "1.4.3"
+    "turbo-linux-arm" "1.4.3"
+    "turbo-linux-arm64" "1.4.3"
+    "turbo-linux-mips64le" "1.4.3"
+    "turbo-linux-ppc64le" "1.4.3"
+    "turbo-windows-32" "1.4.3"
+    "turbo-windows-64" "1.4.3"
+    "turbo-windows-arm64" "1.4.3"
+
+"vanilla-nested@^1.7.0":
+  "integrity" "sha512-wA5Y+IoyzBNiMbvxdD6flN0iPCUi78beB2HzJ91G6iUB7S/WWCAiCgCZoCrlG4pHk4fJPIxyAgTVQHZA17CGSQ=="
+  "resolved" "https://registry.npmjs.org/vanilla-nested/-/vanilla-nested-1.7.0.tgz"
+  "version" "1.7.0"

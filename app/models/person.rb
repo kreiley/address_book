@@ -9,6 +9,8 @@ class Person < ApplicationRecord
     accepts_nested_attributes_for :phones
     belongs_to :user
 
+    after_update_commit { broadcast_update}
+
     before_create :slugify
 
     def slugify
