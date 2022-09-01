@@ -23,15 +23,18 @@ class AddressesController < ApplicationController
 
   # POST /addresses or /addresses.json
   def create
-    @address = current_user.addresses.new(address_params)
+    @person = Person.find(params[:person_id])
+    @address = @person.addresses.create(address_params)
+    @address.user = current_user
 
     respond_to do |format|
       if @address.save
-        format.turbo_stream
-        format.html { redirect_to address_url(@address), notice: "Address was successfully created." }
+        #format.turbo_stream
+        format.html { redirect_to person_path(@person), notice: "Address was successfully created." }
         format.json { render :show, status: :created, location: @address }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        #format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@email)}_form"), partial: "form", locals: {email: @email}}
+        format.html { redirect_to person_path(@person), alert: "Address was not created." }
         format.json { render json: @address.errors, status: :unprocessable_entity }
       end
     end
@@ -41,9 +44,10 @@ class AddressesController < ApplicationController
   def update
     respond_to do |format|
       if @address.update(address_params)
-        format.html { redirect_to address_url(@address), notice: "Address was successfully updated." }
+        format.html { redirect_to person_path(@person), notice: "Address was successfully updated." }
         format.json { render :show, status: :ok, location: @address }
       else
+        #format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@address)}_form"), partial: "form", locals: {address: @address}}
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @address.errors, status: :unprocessable_entity }
       end
@@ -52,10 +56,10 @@ class AddressesController < ApplicationController
 
   # DELETE /addresses/1 or /addresses/1.json
   def destroy
+    @address = @person.addresses.find(params[:id])
     @address.destroy
-
     respond_to do |format|
-      format.html { redirect_to addresses_url, notice: "Address was successfully destroyed." }
+      format.html { redirect_to person_path(@person), notice: "Address was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -63,7 +67,7 @@ class AddressesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_address
-      @address = current_user.addresses.find(params[:id])
+      @person = Person.find(params[:person_id])
 
     end
 

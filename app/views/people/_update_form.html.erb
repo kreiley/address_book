@@ -1,0 +1,42 @@
+<%= simple_form_for @person do |f| %>
+  <% if @person.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+        <% @person.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.input :salutation, required: false %>
+  <%= f.input :first_name, required: true %>
+  <%= f.input :middle_name, required: false %>
+  <%= f.input :last_name, required: true %>
+  <%= f.input :ssn, required: false %>
+  <%= f.input :birth_date, required: false %>
+  <%= f.input :comment, required: false %>
+    <hr/>
+  <%= f.fields_for :phones do |phone| %>
+    <%= phone.input :phone_number %>
+    <%= phone.input :comment %>
+    <hr/>
+  <% end %>
+  <%= f.fields_for :emails do |email| %>
+    <%= email.input :email_address %>
+    <%= email.input :comment %>
+    <hr/>
+  <% end %>
+  <%= f.fields_for :addresses do |address| %>
+    <%= address.input :street %>
+    <%= address.input :town %>
+    <%= address.input :state %>
+    <%= address.input :country %>
+    <%= address.input :zip_code %>
+    <hr/>
+  <% end %>
+
+  <%= f.button :submit %>
+ 
+<% end %>

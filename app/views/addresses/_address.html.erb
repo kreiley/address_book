@@ -1,32 +1,8 @@
-<div id="<%= dom_id address %>">
-  <p>
-    <strong>Street:</strong>
-    <%= address.street %>
-  </p>
-
-  <p>
-    <strong>Town:</strong>
-    <%= address.town %>
-  </p>
-
-  <p>
-    <strong>Zip code:</strong>
-    <%= address.zip_code %>
-  </p>
-
-  <p>
-    <strong>State:</strong>
-    <%= address.state %>
-  </p>
-
-  <p>
-    <strong>Country:</strong>
-    <%= address.country %>
-  </p>
-
-  <p>
-    <strong>Person:</strong>
-    <%= address.person_id %>
-  </p>
-
+<div class="address-<%= address.id %>" style="display:grid; align-items:center; grid-template-columns:auto max-content; grid-row-gap: 3px;">
+       
+    <%= address.street%>
+<div class="btn-group" style="font-size:15px; grid-row-start:span 2;">
+      <%= button_to "", [person,address], class:"btn-close", method: :delete %>
+    </div>
+    <p style="font-size:18px; font-weight:100;"><%= address.town + ', ' + address.state + ' ' + address.country + ' ' + address.zip_code %></p>
 </div>

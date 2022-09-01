@@ -1,14 +1,16 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>People</h1>
+<div style="display:grid; grid-template-columns: auto max-content max-content; align-items:center;">
+  <div style="grid-column-start:span 2; padding-top:30px; padding-bottom: 30px;">
+    <h1>Contacts</h1>
+    <p style="color: green"><%= notice %></p>
+  </div>
+  <div class="btn btn-dark" style="color:white;">
+    <%= link_to 'Add Contact', new_person_path, :class => "btn-dark text-decoration-none"%>
+  </div>
+</div>
 <%= turbo_stream_from @people %>
-<div id="people">
+<div id="people" style="display:grid; grid-column-start:span 3;">
   <% @people.each do |person| %>
     <%= render person %>
-    <p>
-      <%= link_to "Show this person", person %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New person", new_person_path %>

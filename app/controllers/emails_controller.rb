@@ -23,16 +23,18 @@ class EmailsController < ApplicationController
 
   # POST /emails or /emails.json
   def create
-    @email = current_user.emails.new(email_params)
+    @person = Person.find(params[:person_id])
+    @email = @person.emails.create(email_params)
+    @email.user = current_user
 
     respond_to do |format|
       if @email.save
-        format.turbo_stream
-        format.html { redirect_to email_url(@email), notice: "Email was successfully created." }
+        #format.turbo_stream
+        format.html { redirect_to person_path(@person), notice: "Email was successfully created." }
         format.json { render :show, status: :created, location: @email }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@email)}_form"), partial: "form", locals: {email: @email}}
-        format.html { render :new, status: :unprocessable_entity }
+        #format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@email)}_form"), partial: "form", locals: {email: @email}}
+        format.html { redirect_to person_path(@person), alert: "Email was not created." }
         format.json { render json: @email.errors, status: :unprocessable_entity }
       end
     end
@@ -42,7 +44,7 @@ class EmailsController < ApplicationController
   def update
     respond_to do |format|
       if @email.update(email_params)
-        format.html { redirect_to email_url(@email), notice: "Email was successfully updated." }
+        format.html { redirect_to person_path(@person), notice: "Email was successfully updated." }
         format.json { render :show, status: :ok, location: @email }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@email)}_form"), partial: "form", locals: {email: @email}}
@@ -54,10 +56,10 @@ class EmailsController < ApplicationController
 
   # DELETE /emails/1 or /emails/1.json
   def destroy
+    @email = @person.emails.find(params[:id])
     @email.destroy
-
     respond_to do |format|
-      format.html { redirect_to emails_url, notice: "Email was successfully destroyed." }
+      format.html { redirect_to person_path(@person), notice: "Email was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,7 +67,7 @@ class EmailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_email
-      @email = current_user.emails.find(params[:id])
+      @person = Person.find(params[:person_id])
     end
 
     # Only allow a list of trusted parameters through.
