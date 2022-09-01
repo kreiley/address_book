@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
   resources :people do
-    resources :addresses, only: [:create, :update, :destroy]
+    resources :addresses
+    resources :emails
+    resources :phones
   end
 
   get 'sessions/new'
   get 'users/new'
-  resources :phones
-  resources :emails
-  resources :addresses
-  resources :people
-  get 'about', to: 'pages#about'
   get '/register', to: 'users#new'
   resources :users, only: [:create]
 

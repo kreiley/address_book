@@ -1,17 +1,9 @@
-<div id="<%= dom_id phone %>">
-  <p>
-    <strong>Phone number:</strong>
-    <%= phone.phone_number %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-    <%= phone.comment %>
-  </p>
-
-  <p>
-    <strong>Person:</strong>
-    <%= phone.person_id %>
-  </p>
+<div class="phone-<%= phone.id %>" style="display:grid; align-items:center; grid-template-columns:auto max-content; grid-row-gap: 3px;">
+       
+    <%= phone.phone_number %>    
+<div class="btn-group" style="font-size:15px; grid-row-start:span 2;">
+      <%= button_to "", [person,phone], class:"btn-close", method: :delete %>
+    </div>
+    <i style="color:gray; font-size:10px; grid-column-start"><%= phone.comment %></i>
 
 </div>

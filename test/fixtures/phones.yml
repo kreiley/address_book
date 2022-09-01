@@ -8,4 +8,14 @@ one:
 two:
   phone_number: MyString
   comment: MyText
+  person: x
+
+three:
+  phone_number: MyString
+  comment: MyText
+  person: two
+
+four:
+  phone_number: '9795419228'
+  comment: MyText
   person: two

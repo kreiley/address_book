@@ -4,11 +4,14 @@ class PeopleController < ApplicationController
 
   # GET /people or /people.json
   def index
-    @people = current_user.people
+    @people = current_user.people.order(Person.arel_table['last_name'].lower.asc, Person.arel_table['first_name'].lower.asc)
   end
 
   # GET /people/1 or /people/1.json
   def show
+    @emails = @person.emails.order(created_at: :desc)
+    @phones = @person.phones.order(created_at: :desc)
+    @addresses = @person.addresses.order(created_at: :desc)
   end
 
   # GET /people/new
@@ -27,24 +30,16 @@ class PeopleController < ApplicationController
   def create
     #@person = Person.new(person_params)
     @person = current_user.people.new(person_params)
-    for address in @person.addresses do
-      address.user = current_user
-    end
-    for email in @person.emails do
-      email.user = current_user
-    end
-    for phone in @person.phones do
-      phone.user = current_user
-    end
+    @person.user = current_user
 
     respond_to do |format|
       if @person.save
-        format.turbo_stream
-        #format.html { redirect_to person_url(@person), notice: "Person was successfully created." }
+        #format.turbo_stream
+        format.html { redirect_to person_url(@person), notice: "Person was successfully created." }
         format.json { render :show, status: :created, location: @person }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@person)}_form"), partial: "form", locals: {person: @person}}
-        #format.html { render :new, status: :unprocessable_entity }
+        #format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@person)}_form"), partial: "form", locals: {person: @person}}
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end

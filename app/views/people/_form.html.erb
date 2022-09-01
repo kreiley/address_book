@@ -1,113 +1,23 @@
-<%= form_with(model: person) do |form| %>
-  <% if person.errors.any? %>
+<%= simple_form_for @person do |f| %>
+  <% if @person.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
+      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
 
       <ul>
-        <% person.errors.each do |error| %>
+        <% @person.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
+  <%= f.input :salutation, required: false %>
+  <%= f.input :first_name, required: true %>
+  <%= f.input :middle_name, required: false %>
+  <%= f.input :last_name, required: true %>
+  <%= f.input :ssn, required: false %>
+  <%= f.input :birth_date, required: false %>
+  <%= f.input :comment, required: false %>
 
-  <div>
-    <%= form.label :salutation, style: "display: block" %>
-    <%= form.text_field :salutation %>
-  </div>
-
-  <div>
-    <%= form.label :first_name, style: "display: block" %>
-    <%= form.text_field :first_name %>
-  </div>
-
-  <div>
-    <%= form.label :middle_name, style: "display: block" %>
-    <%= form.text_field :middle_name %>
-  </div>
-
-  <div>
-    <%= form.label :last_name, style: "display: block" %>
-    <%= form.text_field :last_name %>
-  </div>
-
-  <div>
-    <%= form.label :ssn, style: "display: block" %>
-    <%= form.text_field :ssn %>
-  </div>
-
-  <div>
-    <%= form.label :birth_date, style: "display: block" %>
-    <%= form.date_field :birth_date %>
-  </div>
-
-  <div>
-    <%= form.label :comment, style: "display: block" %>
-    <%= form.text_area :comment %>
-  </div>
-
-  <div>
-    <%= form.label :slug, style: "display: block" %>
-    <%= form.text_field :slug %>
-  </div>
-
-  <h1>Emails</h1>
-  <%= form.fields_for :emails do |email| %>
-  <div>
-    <%= email.label :email_address, style: "display: block" %>
-    <%= email.text_field :email_address %>
-  </div>
-
-  <div>
-    <%= email.label :comment, style: "display: block" %>
-    <%= email.text_area :comment %>
-  </div>
-  <% end %>
-
-  <h1>Phone Numbers</h1>
-  <%= form.fields_for :phones do |phone| %>
-  <div>
-    <%= phone.label :phone_number, style: "display: block" %>
-    <%= phone.text_field :phone_number %>
-  </div>
-
-  <div>
-    <%= phone.label :comment, style: "display: block" %>
-    <%= phone.text_area :comment %>
-  </div>
-  <% end %>
-
-  <h1>Addresses</h1>
-  <%= form.fields_for :addresses do |addr| %>
-    <div>
-    <%= addr.label :street, style: "display: block" %>
-    <%= addr.text_field :street %>
-    </div>
-
-    <div>
-    <%= addr.label :town, style: "display: block" %>
-    <%= addr.text_field :town %>
-    </div>
-
-    <div>
-    <%= addr.label :zip_code, style: "display: block" %>
-    <%= addr.text_field :zip_code %>
-    </div>
-
-    <div>
-    <%= addr.label :state, style: "display: block" %>
-    <%= addr.text_field :state %>
-    </div>
-
-    <div>
-    <%= addr.label :country, style: "display: block" %>
-    <%= addr.text_field :country %>
-    </div>
-  <% end %>
-
-  
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= f.button :submit %>
+ 
 <% end %>

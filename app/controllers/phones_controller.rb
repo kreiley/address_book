@@ -23,15 +23,18 @@ class PhonesController < ApplicationController
 
   # POST /phones or /phones.json
   def create
-    @phone = current_user.phones.new(phone_params)
+    @person = Person.find(params[:person_id])
+    @phone = @person.phones.create(phone_params)
+    @phone.user = current_user
 
     respond_to do |format|
       if @phone.save
-        format.turbo_stream
-        format.html { redirect_to phone_url(@phone), notice: "Phone was successfully created." }
+        #format.turbo_stream
+        format.html { redirect_to person_path(@person), notice: "Phone was successfully created." }
         format.json { render :show, status: :created, location: @phone }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        #format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@email)}_form"), partial: "form", locals: {email: @email}}
+        format.html { redirect_to person_path(@person), alert: "Phone was not created." }
         format.json { render json: @phone.errors, status: :unprocessable_entity }
       end
     end
@@ -41,7 +44,7 @@ class PhonesController < ApplicationController
   def update
     respond_to do |format|
       if @phone.update(phone_params)
-        format.html { redirect_to phone_url(@phone), notice: "Phone was successfully updated." }
+        format.html { redirect_to person_path(@person), notice: "Phone was successfully updated." }
         format.json { render :show, status: :ok, location: @phone }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,10 +55,10 @@ class PhonesController < ApplicationController
 
   # DELETE /phones/1 or /phones/1.json
   def destroy
+    @phone = @person.phones.find(params[:id])
     @phone.destroy
-
     respond_to do |format|
-      format.html { redirect_to phones_url, notice: "Phone was successfully destroyed." }
+      format.html { redirect_to person_path(@person), notice: "Phone was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -63,7 +66,7 @@ class PhonesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_phone
-      @phone = current_user.phones.find(params[:id])
+      @person = Person.find(params[:person_id])
     end
 
     # Only allow a list of trusted parameters through.

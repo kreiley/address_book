@@ -1,18 +1,9 @@
-
-<div id="<%= dom_id email %>">
-  <p>
-    <strong>Email address:</strong>
-    <%= email.email_address %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-    <%= email.comment %>
-  </p>
-
-  <p>
-    <strong>Person:</strong>
-    <%= email.person_id %>
-  </p>
+<div class="email-<%= email.id %>" style="display:grid; align-items:center; grid-template-columns:auto max-content; grid-row-gap: 3px;">
+       
+    <%= email.email_address %>    
+<div class="btn-group" style="font-size:15px; grid-row-start:span 2;">
+      <%= button_to "", [person,email], class:"btn-close", method: :delete %>
+    </div>
+    <i style="color:gray; font-size:10px; grid-column-start"><%= email.comment %></i>
 
 </div>
