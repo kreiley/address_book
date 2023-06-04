@@ -1,65 +1,29 @@
-Write a CRUD application that will function as an “Address Book” kind of app
+I have successfully completed a CRUD (Create, Read, Update, and Delete) application designed to function as an "Address Book" application.
 
-IMPORTANT: Write tests for the app, we will look at these closely (these include
-your own tests, not just the generated ones)
-Make sure that these tests are passing and your application works
+A key feature I implemented was an extensive testing suite for the app. The tests, which I designed myself beyond just the generated ones, were thoroughly checked to ensure they passed and that the application functioned properly.
 
-Create (please note the relationships):
+I created four entities, each with specific attributes. These include:
 
-Entities (4) with the following attributes:
+Person - I included various attributes such as Salutation (offering options such as Mr., Mrs., Ms.), First Name (made compulsory), Middle Name (optional), Last Name (compulsory), SSN (optional), Birth Date (with actual date function) (optional), and Comment (optional text-area).
 
-Person
-  Person Attributes:
-    Salutation (a list of Mr., Mrs., Ms.)
-    First Name (Required; i.e. user must provide)
-    Middle Name (Optional; i.e. user does not have to
-    provide)
-    Last Name (Required)
-    SSN (Optional)
-    Birth Date (actual date function) (Optional)
-    Comment (Text-area; optional)
+Address - I added attributes such as Street, Town, and ZIP Code, all of which are compulsory. State was made optional, and I provided a list of countries for the 'Country' attribute. I established a one-to-many relationship between people and addresses.
 
-Address
-  Address Attributes
-    Street (Required)
-    Town (Required)
-    ZIP Code (Required)
-    State (Optional)
-    Country (List of Countries)
-    There needs to be a 1:M relation between People and
-    Addresses
+Email - I included Email Address as a required attribute and added an optional Comment text area. I also established a one-to-many relationship between a person and their email addresses.
 
-Email
-  Email Attributes:
-    Email Address (Required)
-    Comment (Text-area; optional)
-    There needs to be a 1:M relation between Person and Email
-    
-Phone Number
-  Phone Attributes:
-    Phone Number (Required)
-    Comment (Text-area; optional)
-    There needs to be a 1:M relation between Person and Phone
+Phone Number - The Phone Number attribute was made compulsory, and an optional Comment text area was included. I instituted a one-to-many relationship between a person and their phone numbers.
 
-Each Entity should be Created, Read, Updated, and Deleted
+For each entity, I provided the capacity for the information to be created, read, updated, and deleted.
 
-Implement AJAX for these CRUD operations (or, at least for Create and
-Update) - you CAN use jQuery with Rails
+Incorporating AJAX for these CRUD operations (at least for Create and Update) was accomplished, using jQuery with Rails to assist in this functionality.
 
-Implement simple authorization and authentication from scratch (no gems)
-(signup / signin)
+Furthermore, I implemented simple authorization and authentication from scratch, enabling features such as signup and sign-in without using external gems.
 
-Application should also work as an API and accept / send requests / responses via
-JSON
+I ensured the application could also function as an API, capable of accepting and sending requests and responses via JSON.
 
-Use Bootstrap (https://getbootstrap.com/) for CSS to make the UI pleasant
+I utilized Bootstrap for CSS to make the user interface more pleasant and user-friendly.
 
-The application needs to be responsive (usable on small screens, i.e. mobile
-devices)
+Taking into account a variety of device users, I made the application responsive to be usable on small screens, such as mobile devices.
 
-For Data Persistence, use PostgreSQL database
+For Data Persistence, I employed a PostgreSQL database, ensuring the data types corresponded to their field and the type of data being entered.
 
-Data types should be correspondent to their field and the type of data
-being entered
-
-Versions: Use the latest stable Rails and PostgreSQL database
+Lastly, I used the latest stable versions of Rails and PostgreSQL database throughout the project development.
